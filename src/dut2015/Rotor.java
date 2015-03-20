@@ -1,41 +1,52 @@
 package dut2015;
 
-public class Rotor implements Enigma {
 
-	@Override
-	public void setRotor(Position pos, int rotorNumber) {
-		// TODO Auto-generated method stub
+public class Rotor {
+	private String code;
+	private Position position;
+	private String rotation;
+	private String identite="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private int pointeur=0;
+	
+	public Rotor(String code, Position position, String rotation) {
+		this.code = code;
+		this.position = position;
+		this.rotation = rotation;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public String getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(String rotation) {
+		this.rotation = rotation;
+	}
+	
+	public int codageGauche(char lettre){
+		int index=identite.indexOf(lettre)+pointeur;
+		if (index<=25)
+			return identite.indexOf(code.charAt(index));
+		return identite.indexOf(code.charAt(index-26));
 		
 	}
-
-	@Override
-	public int getRotor(Position pos) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public int codageDroit(char lettre){
+		return code.indexOf(lettre);
 	}
-
-	@Override
-	public void moveRotorToLetter(Position pos, char letter) {
-		// TODO Auto-generated method stub
-		
+	
+	public void rotationRotor(){
+		pointeur=pointeur%identite.length();
 	}
-
-	@Override
-	public char getRotorLetter(Position pos) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public boolean rotationVoisin(String lettre){
+		return lettre==rotation;
 	}
-
-	@Override
-	public String getCurrentLetters() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public char encode(char c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
