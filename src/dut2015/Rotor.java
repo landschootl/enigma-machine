@@ -1,5 +1,6 @@
 package dut2015;
 
+
 public class Rotor {
 	private String code;
 	private Position position;
