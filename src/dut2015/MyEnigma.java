@@ -1,7 +1,15 @@
 package dut2015;
 
 public class MyEnigma implements Enigma {
-	private Rotor tabRotor[]=new Rotor[8];
+	private Rotor tabRotor[]=new Rotor[5];
+	public MyEnigma (){
+		tabRotor[0]=new RealRotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ",'Q');
+		tabRotor[1]=new RealRotor("AJDKSIRUXBLHWTMCQGZNPYFVOE",'E');
+		tabRotor[2]=new RealRotor("BDFHJLCPRTXVZNYEIWGAKMUSQO",'V');
+		tabRotor[3]=new RealRotor("ESOVPZJAYQUIRHXLNFTGKDCMWB",'J');
+		tabRotor[4]=new RealRotor("VZBRGITYUPSDNHLXAWMJQOFECK",'Z');
+	}
+	
 	@Override
 	public void setRotor(Position pos, int rotorNumber) {
 		// TODO Auto-generated method stub
@@ -22,13 +30,16 @@ public class MyEnigma implements Enigma {
 	@Override
 	public void moveRotorToLetter(Position pos, char letter) {
 		// TODO Auto-generated method stub
-		
+		tabRotor[getRotor(pos)].setRotation(letter);
 	}
 
 	@Override
 	public char getRotorLetter(Position pos) {
 		// TODO Auto-generated method stub
-		return 0;
+		int rotor=getRotor(pos);
+		if (rotor==0)
+			return ' ';
+		return tabRotor[rotor-1].getRotation();
 	}
 
 	@Override
