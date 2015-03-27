@@ -20,10 +20,7 @@ public class MyEnigma implements Enigma {
 	@Override
 	public int getRotor(Position pos) {
 		// TODO Auto-generated method stub
-		for(int i=0;i<tabRotor.length;i++){
-			if (tabRotor[i].getPosition()==pos)
-				return i+1;
-		}
+		if (rotorActif)
 		return 0;
 	}
 
