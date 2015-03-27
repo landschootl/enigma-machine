@@ -4,11 +4,16 @@ public interface Rotor {
 	//getter setter
 	public char getRotation();
 	public void setRotation(char rotation) ;
-	 //codage
-	public int codageGauche(char lettre);
-	public int codageDroit(char lettre);
+	public char getPointeur();
+	public void setPointeur(char letter);
+	//codage
+	public char codageGauche(char lettre);
+	public int codageDroit(int i);
 	
 	public void rotationRotor();
 	
 	public boolean rotationVoisin(char lettre);
+	
+	
+	
 }
