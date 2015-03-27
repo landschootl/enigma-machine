@@ -11,11 +11,16 @@ public class Main {
         enigma.setRotor(LEFT, 1);
         enigma.setRotor(MIDDLE, 2);
         enigma.setRotor(RIGHT, 3);
+        System.out.println(enigma.encode('Z'));
         System.out.println(enigma.encode('A'));
         System.out.println(enigma.encode('A'));
         System.out.println(enigma.encode('A'));
         System.out.println(enigma.encode('A'));
         System.out.println(enigma.encode('A'));
+        System.out.println(enigma.encode('A'));
+        System.out.println(enigma.encode('A'));
+        System.out.println(enigma.encode('A'));
+
 
 	}
 

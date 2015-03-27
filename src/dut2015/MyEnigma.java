@@ -67,7 +67,7 @@ public class MyEnigma implements Enigma {
 		rotorActif[2].rotationRotor();
 		for (int i=rotorActif.length-1;i>=0;i--){
 			c=rotorActif[i].codageGauche(c);
-			if (i-1>-1 && rotation(i-1,c)){
+			if (i!=0 && rotation(i,c)){
 				rotorActif[i-1].rotationRotor();
 			}
 		}

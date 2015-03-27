@@ -27,25 +27,24 @@ public class RealRotor implements Rotor{
 		return identite.charAt(pointeur);
 	}
 	public char codageGauche(char lettre){
-		int index=identite.indexOf(lettre)+pointeur%code.length();
+		int index=(identite.indexOf(lettre)+pointeur)%code.length();
 		char c=code.charAt(index);
 		return identite.charAt(Math.abs(identite.indexOf(c)-pointeur));
 	}
 	
 	public int codageDroit(int i){
-		char c;
-		int index=i+pointeur;
-		if (i<25){
-			c= identite.charAt(index);
-		}
-		else
-			c= identite.charAt(index%26);
-		return code.indexOf(c)-pointeur;
+		char c=identite.charAt((i+pointeur)%code.length());
+		int e=code.indexOf(c)-pointeur;
+		if (e>=0)
+			return e;
+		return 25;
 	}
 	
 	public void rotationRotor(){
 		if (pointeur ==0)
 			pointeur++;
+		else if (pointeur==25)
+			pointeur=0;
 		else{
 			pointeur++;
 			pointeur=pointeur%code.length();
