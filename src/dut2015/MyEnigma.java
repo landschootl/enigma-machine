@@ -2,6 +2,7 @@ package dut2015;
 
 public class MyEnigma implements Enigma {
 	private Rotor tabRotor[]=new Rotor[5];
+	private Rotor rotorActif[]=new Rotor[3];
 	public MyEnigma (){
 		tabRotor[0]=new RealRotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ",'Q');
 		tabRotor[1]=new RealRotor("AJDKSIRUXBLHWTMCQGZNPYFVOE",'E');
@@ -13,8 +14,7 @@ public class MyEnigma implements Enigma {
 	@Override
 	public void setRotor(Position pos, int rotorNumber) {
 		// TODO Auto-generated method stub
-		tabRotor[rotorNumber-1].setPosition(pos);
-		
+		rotorActif[pos.ordinal()]=tabRotor[rotorNumber-1];
 	}
 
 	@Override

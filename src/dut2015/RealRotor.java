@@ -3,7 +3,6 @@ package dut2015;
 
 public class RealRotor implements Rotor{
 	private String code;
-	private Position position;
 	private char rotation;
 	private final String identite="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private int pointeur=0;
@@ -11,14 +10,6 @@ public class RealRotor implements Rotor{
 	public RealRotor(String code, char rotation) {
 		this.code = code;
 		this.rotation = rotation;
-	}
-
-	public Position getPosition() {
-		return position;
-	}
-
-	public void setPosition(Position position) {
-		this.position = position;
 	}
 
 	public char getRotation() {
