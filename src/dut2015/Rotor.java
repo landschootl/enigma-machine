@@ -1,5 +1,7 @@
 package dut2015;
 
+import java.awt.datatransfer.DataFlavor;
+
 public interface Rotor {
 	//getter setter
 	public char getRotation();
@@ -14,6 +16,7 @@ public interface Rotor {
 	
 	public boolean rotationVoisin(char lettre);
 	
-	
+	public boolean isTourner();
+	public void setTourner(boolean tourner);
 	
 }

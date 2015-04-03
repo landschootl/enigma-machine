@@ -1,13 +1,33 @@
 package dut2015;
 
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
-public class RealRotor implements Rotor{
+
+public class RealRotor implements Rotor, Transferable {
+	static DataFlavor ROTOR_FLAVOR=new DataFlavor(Rotor.class,"ROTOR_FLAVOR");
+	
+	private int num;
+	private String name;
 	private String code;
 	private char rotation;
 	private final String identite="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private int pointeur=0;
+	private boolean tourner=false;
 	
-	public RealRotor(String code, char rotation) {
+	public boolean isTourner() {
+		return pointeur>code.indexOf(rotation);
+	}
+
+	public void setTourner(boolean tourner) {
+		this.tourner = tourner;
+	}
+
+	public RealRotor(int num, String name, String code, char rotation) {
+		this.num=num;
+		this.name = name;
 		this.code = code;
 		this.rotation = rotation;
 	}
@@ -21,6 +41,7 @@ public class RealRotor implements Rotor{
 	}
 	
 	public void setPointeur(char letter){
+		
 		pointeur=identite.indexOf(letter);
 	}
 	public char getPointeur(){
@@ -52,7 +73,30 @@ public class RealRotor implements Rotor{
 	}
 	
 	public boolean rotationVoisin(char lettre){
-		return lettre==rotation;
+		if (lettre==rotation){
+			tourner=true;
+			return true;
+		}
+		return false;
 	}
 
+	@Override
+	public DataFlavor[] getTransferDataFlavors() {
+		return new DataFlavor[]{ROTOR_FLAVOR};
+	}
+
+	@Override
+	public boolean isDataFlavorSupported(DataFlavor flavor) {
+		return flavor == ROTOR_FLAVOR;
+	}
+
+	@Override
+	public Object getTransferData(DataFlavor flavor)
+			throws UnsupportedFlavorException, IOException {
+		return num;
+	}
+
+	public String toString(){
+		return "rotor " + name;
+	}
 }

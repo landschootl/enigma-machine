@@ -8,17 +8,18 @@ public class MyEnigma implements Enigma {
 	private Reflector reflector=new Reflector();
 	
 	static{
-		tabRotor[0]=new RealRotor("EKMFLGDQVZNTOWYHXUSPAIBRCJ",'Q');
-		tabRotor[1]=new RealRotor("AJDKSIRUXBLHWTMCQGZNPYFVOE",'E');
-		tabRotor[2]=new RealRotor("BDFHJLCPRTXVZNYEIWGAKMUSQO",'V');
-		tabRotor[3]=new RealRotor("ESOVPZJAYQUIRHXLNFTGKDCMWB",'J');
-		tabRotor[4]=new RealRotor("VZBRGITYUPSDNHLXAWMJQOFECK",'Z');
+		tabRotor[0]=new RealRotor(1,"I","EKMFLGDQVZNTOWYHXUSPAIBRCJ",'Q');
+		tabRotor[1]=new RealRotor(2,"II","AJDKSIRUXBLHWTMCQGZNPYFVOE",'E');
+		tabRotor[2]=new RealRotor(3,"III","BDFHJLCPRTXVZNYEIWGAKMUSQO",'V');
+		tabRotor[3]=new RealRotor(4,"IV","ESOVPZJAYQUIRHXLNFTGKDCMWB",'J');
+		tabRotor[4]=new RealRotor(5,"V","VZBRGITYUPSDNHLXAWMJQOFECK",'Z');
 	}
 	
 	@Override
 	public void setRotor(Position pos, int rotorNumber) {
 		// TODO Auto-generated method stub
 		rotorActif[pos.ordinal()]=tabRotor[rotorNumber-1];
+		rotorActif[pos.ordinal()].setPointeur('A');
 	}
 
 	@Override
@@ -26,12 +27,13 @@ public class MyEnigma implements Enigma {
 		// TODO Auto-generated method stub
 		if (rotorActif[pos.ordinal()]!=null)
 			return pos.ordinal();
-		return 0;
+		return -1;
 	}
 
 	@Override
 	public void moveRotorToLetter(Position pos, char letter) {
 		// TODO Auto-generated method stub
+			
 		rotorActif[pos.ordinal()].setPointeur(letter);
 	}
 
@@ -39,7 +41,7 @@ public class MyEnigma implements Enigma {
 	public char getRotorLetter(Position pos) {
 		// TODO Auto-generated method stub
 		int rotor=getRotor(pos);
-		if (rotor==0)
+		if (rotor==-1)
 			return ' ';
 		return rotorActif[pos.ordinal()].getPointeur();
 	}
@@ -65,6 +67,8 @@ public class MyEnigma implements Enigma {
 	
 	private char encodeGauche(char c){
 		rotorActif[2].rotationRotor();
+		if (rotorActif[2].isTourner())
+			rotorActif[1].rotationRotor();
 		for (int i=rotorActif.length-1;i>=0;i--){
 			c=rotorActif[i].codageGauche(c);
 			if (i!=0 && rotation(i,c)){
